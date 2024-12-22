@@ -30,7 +30,10 @@ def download_excel():
     global latest_file
     if latest_file and os.path.exists(latest_file):
         return send_file(latest_file, as_attachment=True)
-    return jsonify({"error": "No file available"}), 404
+    else:
+        # Log the issue for debugging
+        print("No file available for download.")
+        return jsonify({"error": "No file available"}), 404
 
 # API Endpoint to Check Status
 @app.route("/status", methods=["GET"])
@@ -42,10 +45,14 @@ def status():
 def run_scraper():
     global latest_file
     try:
+        # Simulate scraping logic
         latest_file = scrape_properties()
-        return jsonify({"message": "Scraper executed successfully", "file": latest_file}), 200
+        return jsonify({"message": "Scraper executed successfully", "file": latest_file})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        # Log the error for debugging
+        print(f"Error during scraping: {e}")
+        return jsonify({"error": "Scraping failed. Please try again later."}), 500
+
 
 # Main entry point
 if __name__ == "__main__":
