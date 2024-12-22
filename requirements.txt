@@ -1,0 +1,6 @@
+flask
+apscheduler
+openpyxl
+requests
+beautifulsoup4
+gunicorn
