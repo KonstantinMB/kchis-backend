@@ -11,7 +11,7 @@ if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
 # Variable to store the latest generated file
-latest_file = None
+latest_file = "data/properties_20241222.xlsx"
 
 # Function to update the latest file
 def scheduled_scraping():

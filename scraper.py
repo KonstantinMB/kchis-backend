@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import openpyxl
+import random
+import time
 from datetime import datetime
 
 def scrape_properties():
@@ -34,10 +36,14 @@ def scrape_properties():
     # Function to scrape a single page
     def scrape_page(court, page):
         url = base_url.format(court=court, page=page)
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36"
+        HEADERS = {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://sales.bcpea.org/",
         }
-        response = requests.get(url, headers=headers)
+
+        time.sleep(random.uniform(2, 5))
+        response = requests.get(url, headers=HEADERS)
         response.raise_for_status()
         
         soup = BeautifulSoup(response.text, "html.parser")
