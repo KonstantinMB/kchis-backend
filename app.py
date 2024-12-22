@@ -2,8 +2,11 @@ from flask import Flask, jsonify, send_file
 from apscheduler.schedulers.background import BackgroundScheduler
 from scraper import scrape_properties
 import os
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 # Directory to store the Excel files
 DATA_DIR = "data"
